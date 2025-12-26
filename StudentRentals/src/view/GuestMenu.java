@@ -1,6 +1,7 @@
 package view;
 
 import data.DataManager;
+import exceptions.CSVException;
 import model.user.Student;
 import model.user.HomeOwner;
 import model.rentals.Rental;
@@ -69,6 +70,7 @@ public class GuestMenu {
             System.out.println("Student registered successfully with id : " + newId);
         } catch (IOException e) {
             System.out.println("Error registering student: " + e.getMessage());
+            throw new CSVException("An error occurred while trying to register Student",e);
         }
     }
 
@@ -91,6 +93,7 @@ public class GuestMenu {
             System.out.println("Home Owner registered successfully with id : " + newId);
         } catch (IOException e) {
             System.out.println("Error registering home owner: " + e.getMessage());
+            throw new CSVException("An error occurred while trying to register home owner",e);
         }
     }
 

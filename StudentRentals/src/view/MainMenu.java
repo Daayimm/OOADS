@@ -11,7 +11,7 @@ public class MainMenu {
     private HomeOwnerMenu homeOwnerMenu;
 
     public MainMenu() {
-        dataManager = new DataManager();
+        dataManager = DataManager.getInstance();
         studentMenu = new StudentMenu(dataManager, scanner);
         guestMenu = new GuestMenu(dataManager, scanner);
         homeOwnerMenu = new HomeOwnerMenu(dataManager, scanner);
