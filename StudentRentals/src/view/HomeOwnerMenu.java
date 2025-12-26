@@ -1,6 +1,7 @@
 package view;
 
 import data.DataManager;
+import exceptions.CSVException;
 import model.rentals.Rental;
 import model.user.HomeOwner;
 
@@ -50,6 +51,13 @@ public class HomeOwnerMenu {
         System.out.println("\nAdd a Home");
         System.out.println("Enter your Home owner ID: ");
         int homeOwnerId = Integer.parseInt(scanner.nextLine());
+        // validating homeOwner ID
+        HomeOwner owner = dataManager.homeowners.stream().filter(h -> h.getId() == homeOwnerId).findFirst().orElse(null);
+        if (owner == null) {
+            System.out.println("HomeOwner not found.");
+            return;
+        }
+
         System.out.println("Enter your rental type(Home,Apartment,Room): ");
         String rentalType = scanner.nextLine();
         System.out.println("Enter rent: ");
@@ -86,7 +94,7 @@ public class HomeOwnerMenu {
             fw.write(String.format("%d,%d,%s,%s,%.2f,%s,%s,%s\n",
                     newRentalId, homeOwnerId,"", rentalType, rent, propertyStatus,propertyCity, propertyAddress));
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new CSVException("An exception occured while updating into CSV",e);
         }
         System.out.println("Home added successfully.");
     }
