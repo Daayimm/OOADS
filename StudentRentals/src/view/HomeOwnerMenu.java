@@ -58,7 +58,7 @@ public class HomeOwnerMenu {
             return;
         }
 
-        System.out.println("Enter your rental type(Home,Apartment,Room): ");
+        System.out.println("Enter your rental type(House,Apartment,Room): ");
         String rentalType = scanner.nextLine();
         System.out.println("Enter rent: ");
         double rent = Double.parseDouble(scanner.nextLine());
